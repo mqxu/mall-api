@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 搜索页面分类VO
  * @author: mqxu
  * @since: 2021-04-21
  **/

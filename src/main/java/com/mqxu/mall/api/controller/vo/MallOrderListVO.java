@@ -2,16 +2,18 @@ package com.mqxu.mall.api.controller.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 订单列表VO类
  * @author: mqxu
  * @since: 2021-04-21
  **/
+@Data
 public class MallOrderListVO implements Serializable {
 
     private Long orderId;

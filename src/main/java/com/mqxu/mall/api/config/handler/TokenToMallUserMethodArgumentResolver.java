@@ -36,16 +36,13 @@ public class TokenToMallUserMethodArgumentResolver implements HandlerMethodArgum
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        if (parameter.hasParameterAnnotation(TokenToMallUser.class)) {
-            return true;
-        }
-        return false;
+        return parameter.hasParameterAnnotation(TokenToMallUser.class);
     }
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
         if (parameter.getParameterAnnotation(TokenToMallUser.class) != null) {
-            MallUser mallUser = null;
+            MallUser mallUser;
             String token = webRequest.getHeader("token");
             if (null != token && !"".equals(token) && token.length() == Constants.TOKEN_LENGTH) {
                 MallUserToken mallUserToken = mallUserTokenMapper.selectByToken(token);
@@ -73,14 +70,14 @@ public class TokenToMallUserMethodArgumentResolver implements HandlerMethodArgum
         if (contentLength < 0) {
             return null;
         }
-        byte buffer[] = new byte[contentLength];
+        byte[] buffer = new byte[contentLength];
         for (int i = 0; i < contentLength; ) {
-            int readlen = request.getInputStream().read(buffer, i,
+            int len = request.getInputStream().read(buffer, i,
                     contentLength - i);
-            if (readlen == -1) {
+            if (len == -1) {
                 break;
             }
-            i += readlen;
+            i += len;
         }
         return buffer;
     }

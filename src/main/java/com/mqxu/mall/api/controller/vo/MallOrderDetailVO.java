@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 订单详情VO类
  * @author: mqxu
  * @since: 2021-04-21
  **/

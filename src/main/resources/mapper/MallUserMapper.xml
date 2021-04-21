@@ -34,6 +34,7 @@
         from tb_mall_user
         where user_id = #{userId,jdbcType=BIGINT}
     </delete>
+
     <insert id="insert" parameterType="MallUser">
         insert into tb_mall_user
         ( user_id, nick_name, login_name
@@ -43,6 +44,7 @@
                , #{passwordMd5,jdbcType=VARCHAR}, #{introduceSign,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
                , #{isDeleted,jdbcType=TINYINT}, #{lockedFlag,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP})
     </insert>
+
     <insert id="insertSelective" parameterType="MallUser">
         insert into tb_mall_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -98,6 +100,7 @@
             </if>
         </trim>
     </insert>
+
     <update id="updateByPrimaryKeySelective" parameterType="MallUser">
         update tb_mall_user
         <set>
@@ -128,6 +131,7 @@
         </set>
         where user_id = #{userId,jdbcType=BIGINT}
     </update>
+
     <update id="updateByPrimaryKey" parameterType="MallUser">
         update tb_mall_user
         set nick_name      = #{nickName,jdbcType=VARCHAR},
@@ -147,6 +151,7 @@
         from tb_mall_user
         where login_name = #{loginName} and is_deleted = 0
     </select>
+
     <select id="selectByLoginNameAndPasswd" resultType="MallUser">
         select
         <include refid="Base_Column_List"/>

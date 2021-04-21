@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * @description:
+ * @description: 首页轮播图VO类
  * @author: mqxu
  * @since: 2021-04-21
  **/

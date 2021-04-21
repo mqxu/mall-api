@@ -8,6 +8,7 @@ import java.io.Serializable;
 /**
  * @author mqxu
  * @description: 用户VO类
+ * @since: 2021-04-21
  */
 @Data
 public class MallUserVO implements Serializable {

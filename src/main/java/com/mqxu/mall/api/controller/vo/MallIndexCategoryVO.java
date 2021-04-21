@@ -4,17 +4,24 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
- * @description:
+ * @description: 商城首页分类VO
  * @author: mqxu
  * @since: 2021-04-21
  **/
 @Data
 public class MallIndexCategoryVO implements Serializable {
-    @ApiModelProperty("轮播图图片地址")
-    private String carouselUrl;
+    @ApiModelProperty("当前一级分类id")
+    private Long categoryId;
 
-    @ApiModelProperty("轮播图点击后的跳转路径")
-    private String redirectUrl;
+    @ApiModelProperty("当前分类级别")
+    private Byte categoryLevel;
+
+    @ApiModelProperty("当前一级分类名称")
+    private String categoryName;
+
+    @ApiModelProperty("二级分类列表")
+    private List<SecondLevelCategoryVO> secondLevelCategoryVos;
 }

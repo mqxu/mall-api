@@ -6,7 +6,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @description:
+ * @description: 用户收货地址VO
  * @author: mqxu
  * @since: 2021-04-21
  **/

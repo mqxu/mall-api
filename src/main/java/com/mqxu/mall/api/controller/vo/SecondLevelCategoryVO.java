@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 二级分类VO
  * @author: mqxu
  * @since: 2021-04-21
  **/
@@ -27,5 +27,5 @@ public class SecondLevelCategoryVO implements Serializable {
     private String categoryName;
 
     @ApiModelProperty("三级分类列表")
-    private List<ThirdLevelCategoryVO> thirdLevelCategoryVOS;
+    private List<ThirdLevelCategoryVO> thirdLevelCategoryVos;
 }

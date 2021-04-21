@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 首页VO类
  * @author: mqxu
  * @since: 2021-04-21
  **/
@@ -17,11 +17,11 @@ public class IndexInfoVO implements Serializable {
     private List<MallIndexCarouselVO> carousels;
 
     @ApiModelProperty("首页热销商品(列表)")
-    private List<MallIndexConfigGoodsVO> hotGoods;
+    private List<MallIndexGoodsVO> hotGoods;
 
     @ApiModelProperty("首页新品推荐(列表)")
-    private List<MallIndexConfigGoodsVO> newGoods;
+    private List<MallIndexGoodsVO> newGoods;
 
     @ApiModelProperty("首页推荐商品(列表)")
-    private List<MallIndexConfigGoodsVO> recommendGoods;
+    private List<MallIndexGoodsVO> recommendGoods;
 }

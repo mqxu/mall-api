@@ -26,6 +26,7 @@ class MallUserServiceTest {
 
     @Test
     void updateUserInfo() {
+
     }
 
     @Test

@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
+ * @description: WebMvc配置
  * @author mqxu
  */
 @Configuration
@@ -34,25 +35,4 @@ public class MallWebMvcConfigurer implements WebMvcConfigurer {
         registry.addResourceHandler("/upload/**").addResourceLocations("file:" + Constants.FILE_UPLOAD_DIC);
         registry.addResourceHandler("/goods-img/**").addResourceLocations("file:" + Constants.FILE_UPLOAD_DIC);
     }
-
-    //@Override
-    //public void addCorsMappings(CorsRegistry registry) {
-    //    registry.addMapping("/**").allowedOrigins("*")
-    //            .allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS")
-    //            .allowCredentials(true).maxAge(3600);
-    //}
-
-    //@Bean
-    //public CorsFilter corsFilter() {
-    //    CorsConfiguration config = new CorsConfiguration();
-    //    config.addAllowedOrigin("*");
-    //    config.addAllowedMethod("*");
-    //    config.addAllowedHeader("*");
-    //    config.addExposedHeader("*");
-    //    config.setMaxAge(3600L);
-    //    config.setAllowCredentials(true);
-    //    UrlBasedCorsConfigurationSource configSource = new UrlBasedCorsConfigurationSource();
-    //    configSource.registerCorsConfiguration("/**", config);
-    //    return new CorsFilter(configSource);
-    //}
 }
