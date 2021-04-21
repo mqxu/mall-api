@@ -17,3 +17,5 @@ spring:
       connection-test-query: SELECT 1
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
