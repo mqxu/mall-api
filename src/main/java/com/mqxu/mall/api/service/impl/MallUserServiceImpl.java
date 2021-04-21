@@ -68,7 +68,7 @@ public class MallUserServiceImpl implements MallUserService {
                 mallUserToken.setExpireTime(expireTime);
                 //新增一条token数据
                 if (mallUserTokenMapper.insertSelective(mallUserToken) > 0) {
-                    //新增成功后返回
+                    //新增成功后返回 token
                     return token;
                 }
             } else {
@@ -77,7 +77,7 @@ public class MallUserServiceImpl implements MallUserService {
                 mallUserToken.setExpireTime(expireTime);
                 //更新
                 if (mallUserTokenMapper.updateByPrimaryKeySelective(mallUserToken) > 0) {
-                    //修改成功后返回
+                    //修改成功后返回 token
                     return token;
                 }
             }

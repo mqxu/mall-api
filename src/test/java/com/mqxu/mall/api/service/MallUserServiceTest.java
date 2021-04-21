@@ -30,5 +30,7 @@ class MallUserServiceTest {
 
     @Test
     void logout() {
+        Boolean logout = mallUserService.logout(9L);
+        log.info(logout.toString());
     }
 }
