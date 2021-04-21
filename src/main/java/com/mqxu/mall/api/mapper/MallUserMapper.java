@@ -2,11 +2,8 @@ package com.mqxu.mall.api.mapper;
 
 import com.mqxu.mall.api.entity.MallUser;
 
-import java.util.List;
-
 /**
- * @author mqxu
- * @Entity com.mqxu.mall.api.entity.MallUser
+ * @Entity com.mqxu.mall.api.entity.TbMallUser
  */
 public interface MallUserMapper {
 
@@ -21,8 +18,6 @@ public interface MallUserMapper {
     int updateByPrimaryKeySelective(MallUser record);
 
     int updateByPrimaryKey(MallUser record);
-
-    List<MallUser> selectAll();
 
 }
 

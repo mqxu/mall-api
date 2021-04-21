@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mqxu.mall.api.mapper.TbMallOrderItemMapper">
+
+    <resultMap id="BaseResultMap" type="com.mqxu.mall.api.entity.MallOrderItem">
+            <id property="orderItemId" column="order_item_id" jdbcType="BIGINT"/>
+            <result property="orderId" column="order_id" jdbcType="BIGINT"/>
+            <result property="goodsId" column="goods_id" jdbcType="BIGINT"/>
+            <result property="goodsName" column="goods_name" jdbcType="VARCHAR"/>
+            <result property="goodsCoverImg" column="goods_cover_img" jdbcType="VARCHAR"/>
+            <result property="sellingPrice" column="selling_price" jdbcType="INTEGER"/>
+            <result property="goodsCount" column="goods_count" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        order_item_id,order_id,goods_id,
+        goods_name,goods_cover_img,selling_price,
+        goods_count,create_time
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_mall_order_item
+        where  order_item_id = #{orderItemId,jdbcType=BIGINT} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from tb_mall_order_item
+        where  order_item_id = #{orderItemId,jdbcType=BIGINT} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mqxu.mall.api.entity.MallOrderItem" useGeneratedKeys="true">
+        insert into tb_mall_order_item
+        ( order_item_id,order_id,goods_id
+        ,goods_name,goods_cover_img,selling_price
+        ,goods_count,create_time)
+        values (#{orderItemId,jdbcType=BIGINT},#{orderId,jdbcType=BIGINT},#{goodsId,jdbcType=BIGINT}
+        ,#{goodsName,jdbcType=VARCHAR},#{goodsCoverImg,jdbcType=VARCHAR},#{sellingPrice,jdbcType=INTEGER}
+        ,#{goodsCount,jdbcType=INTEGER},#{createTime,jdbcType=TIMESTAMP}))
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mqxu.mall.api.entity.MallOrderItem" useGeneratedKeys="true">
+        insert into tb_mall_order_item
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="orderItemId != null">orderItemId,</if>
+                <if test="orderId != null">orderId,</if>
+                <if test="goodsId != null">goodsId,</if>
+                <if test="goodsName != null">goodsName,</if>
+                <if test="goodsCoverImg != null">goodsCoverImg,</if>
+                <if test="sellingPrice != null">sellingPrice,</if>
+                <if test="goodsCount != null">goodsCount,</if>
+                <if test="createTime != null">createTime,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="orderItemId != null">order_item_id = #{orderItemId,jdbcType=BIGINT},</if>
+                <if test="orderId != null">order_id = #{orderId,jdbcType=BIGINT},</if>
+                <if test="goodsId != null">goods_id = #{goodsId,jdbcType=BIGINT},</if>
+                <if test="goodsName != null">goods_name = #{goodsName,jdbcType=VARCHAR},</if>
+                <if test="goodsCoverImg != null">goods_cover_img = #{goodsCoverImg,jdbcType=VARCHAR},</if>
+                <if test="sellingPrice != null">selling_price = #{sellingPrice,jdbcType=INTEGER},</if>
+                <if test="goodsCount != null">goods_count = #{goodsCount,jdbcType=INTEGER},</if>
+                <if test="createTime != null">create_time = #{createTime,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mqxu.mall.api.entity.MallOrderItem">
+        update tb_mall_order_item
+        <set>
+                <if test="orderId != null">
+                    order_id = #{orderId,jdbcType=BIGINT},
+                </if>
+                <if test="goodsId != null">
+                    goods_id = #{goodsId,jdbcType=BIGINT},
+                </if>
+                <if test="goodsName != null">
+                    goods_name = #{goodsName,jdbcType=VARCHAR},
+                </if>
+                <if test="goodsCoverImg != null">
+                    goods_cover_img = #{goodsCoverImg,jdbcType=VARCHAR},
+                </if>
+                <if test="sellingPrice != null">
+                    selling_price = #{sellingPrice,jdbcType=INTEGER},
+                </if>
+                <if test="goodsCount != null">
+                    goods_count = #{goodsCount,jdbcType=INTEGER},
+                </if>
+                <if test="createTime != null">
+                    create_time = #{createTime,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   order_item_id = #{orderItemId,jdbcType=BIGINT} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mqxu.mall.api.entity.MallOrderItem">
+        update tb_mall_order_item
+        set 
+            order_id =  #{orderId,jdbcType=BIGINT},
+            goods_id =  #{goodsId,jdbcType=BIGINT},
+            goods_name =  #{goodsName,jdbcType=VARCHAR},
+            goods_cover_img =  #{goodsCoverImg,jdbcType=VARCHAR},
+            selling_price =  #{sellingPrice,jdbcType=INTEGER},
+            goods_count =  #{goodsCount,jdbcType=INTEGER},
+            create_time =  #{createTime,jdbcType=TIMESTAMP}
+        where   order_item_id = #{orderItemId,jdbcType=BIGINT} 
+    </update>
+</mapper>

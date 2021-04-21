@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mqxu.mall.api.mapper.TbMallUserAddressMapper">
+
+    <resultMap id="BaseResultMap" type="com.mqxu.mall.api.entity.MallUserAddress">
+            <id property="addressId" column="address_id" jdbcType="BIGINT"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="userPhone" column="user_phone" jdbcType="VARCHAR"/>
+            <result property="defaultFlag" column="default_flag" jdbcType="TINYINT"/>
+            <result property="provinceName" column="province_name" jdbcType="VARCHAR"/>
+            <result property="cityName" column="city_name" jdbcType="VARCHAR"/>
+            <result property="regionName" column="region_name" jdbcType="VARCHAR"/>
+            <result property="detailAddress" column="detail_address" jdbcType="VARCHAR"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        address_id,user_id,user_name,
+        user_phone,default_flag,province_name,
+        city_name,region_name,detail_address,
+        is_deleted,create_time,update_time
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_mall_user_address
+        where  address_id = #{addressId,jdbcType=BIGINT} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from tb_mall_user_address
+        where  address_id = #{addressId,jdbcType=BIGINT} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mqxu.mall.api.entity.MallUserAddress" useGeneratedKeys="true">
+        insert into tb_mall_user_address
+        ( address_id,user_id,user_name
+        ,user_phone,default_flag,province_name
+        ,city_name,region_name,detail_address
+        ,is_deleted,create_time,update_time
+        )
+        values (#{addressId,jdbcType=BIGINT},#{userId,jdbcType=BIGINT},#{userName,jdbcType=VARCHAR}
+        ,#{userPhone,jdbcType=VARCHAR},#{defaultFlag,jdbcType=TINYINT},#{provinceName,jdbcType=VARCHAR}
+        ,#{cityName,jdbcType=VARCHAR},#{regionName,jdbcType=VARCHAR},#{detailAddress,jdbcType=VARCHAR}
+        ,#{isDeleted,jdbcType=TINYINT},#{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP}
+        ))
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mqxu.mall.api.entity.MallUserAddress" useGeneratedKeys="true">
+        insert into tb_mall_user_address
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="addressId != null">addressId,</if>
+                <if test="userId != null">userId,</if>
+                <if test="userName != null">userName,</if>
+                <if test="userPhone != null">userPhone,</if>
+                <if test="defaultFlag != null">defaultFlag,</if>
+                <if test="provinceName != null">provinceName,</if>
+                <if test="cityName != null">cityName,</if>
+                <if test="regionName != null">regionName,</if>
+                <if test="detailAddress != null">detailAddress,</if>
+                <if test="isDeleted != null">isDeleted,</if>
+                <if test="createTime != null">createTime,</if>
+                <if test="updateTime != null">updateTime,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="addressId != null">address_id = #{addressId,jdbcType=BIGINT},</if>
+                <if test="userId != null">user_id = #{userId,jdbcType=BIGINT},</if>
+                <if test="userName != null">user_name = #{userName,jdbcType=VARCHAR},</if>
+                <if test="userPhone != null">user_phone = #{userPhone,jdbcType=VARCHAR},</if>
+                <if test="defaultFlag != null">default_flag = #{defaultFlag,jdbcType=TINYINT},</if>
+                <if test="provinceName != null">province_name = #{provinceName,jdbcType=VARCHAR},</if>
+                <if test="cityName != null">city_name = #{cityName,jdbcType=VARCHAR},</if>
+                <if test="regionName != null">region_name = #{regionName,jdbcType=VARCHAR},</if>
+                <if test="detailAddress != null">detail_address = #{detailAddress,jdbcType=VARCHAR},</if>
+                <if test="isDeleted != null">is_deleted = #{isDeleted,jdbcType=TINYINT},</if>
+                <if test="createTime != null">create_time = #{createTime,jdbcType=TIMESTAMP},</if>
+                <if test="updateTime != null">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mqxu.mall.api.entity.MallUserAddress">
+        update tb_mall_user_address
+        <set>
+                <if test="userId != null">
+                    user_id = #{userId,jdbcType=BIGINT},
+                </if>
+                <if test="userName != null">
+                    user_name = #{userName,jdbcType=VARCHAR},
+                </if>
+                <if test="userPhone != null">
+                    user_phone = #{userPhone,jdbcType=VARCHAR},
+                </if>
+                <if test="defaultFlag != null">
+                    default_flag = #{defaultFlag,jdbcType=TINYINT},
+                </if>
+                <if test="provinceName != null">
+                    province_name = #{provinceName,jdbcType=VARCHAR},
+                </if>
+                <if test="cityName != null">
+                    city_name = #{cityName,jdbcType=VARCHAR},
+                </if>
+                <if test="regionName != null">
+                    region_name = #{regionName,jdbcType=VARCHAR},
+                </if>
+                <if test="detailAddress != null">
+                    detail_address = #{detailAddress,jdbcType=VARCHAR},
+                </if>
+                <if test="isDeleted != null">
+                    is_deleted = #{isDeleted,jdbcType=TINYINT},
+                </if>
+                <if test="createTime != null">
+                    create_time = #{createTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="updateTime != null">
+                    update_time = #{updateTime,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   address_id = #{addressId,jdbcType=BIGINT} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mqxu.mall.api.entity.MallUserAddress">
+        update tb_mall_user_address
+        set 
+            user_id =  #{userId,jdbcType=BIGINT},
+            user_name =  #{userName,jdbcType=VARCHAR},
+            user_phone =  #{userPhone,jdbcType=VARCHAR},
+            default_flag =  #{defaultFlag,jdbcType=TINYINT},
+            province_name =  #{provinceName,jdbcType=VARCHAR},
+            city_name =  #{cityName,jdbcType=VARCHAR},
+            region_name =  #{regionName,jdbcType=VARCHAR},
+            detail_address =  #{detailAddress,jdbcType=VARCHAR},
+            is_deleted =  #{isDeleted,jdbcType=TINYINT},
+            create_time =  #{createTime,jdbcType=TIMESTAMP},
+            update_time =  #{updateTime,jdbcType=TIMESTAMP}
+        where   address_id = #{addressId,jdbcType=BIGINT} 
+    </update>
+</mapper>

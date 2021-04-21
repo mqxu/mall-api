@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mqxu.mall.api.mapper.MallAdminUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.mqxu.mall.api.entity.MallAdminUser">
+            <id property="adminUserId" column="admin_user_id" jdbcType="INTEGER"/>
+            <result property="loginUserName" column="login_user_name" jdbcType="VARCHAR"/>
+            <result property="loginPassword" column="login_password" jdbcType="VARCHAR"/>
+            <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+            <result property="locked" column="locked" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        admin_user_id,login_user_name,login_password,
+        nick_name,locked
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_mall_admin_user
+        where  admin_user_id = #{adminUserId,jdbcType=INTEGER} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from tb_mall_admin_user
+        where  admin_user_id = #{adminUserId,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mqxu.mall.api.entity.MallAdminUser" useGeneratedKeys="true">
+        insert into tb_mall_admin_user
+        ( admin_user_id,login_user_name,login_password
+        ,nick_name,locked)
+        values (#{adminUserId,jdbcType=INTEGER},#{loginUserName,jdbcType=VARCHAR},#{loginPassword,jdbcType=VARCHAR}
+        ,#{nickName,jdbcType=VARCHAR},#{locked,jdbcType=TINYINT}))
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mqxu.mall.api.entity.MallAdminUser" useGeneratedKeys="true">
+        insert into tb_mall_admin_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="adminUserId != null">adminUserId,</if>
+                <if test="loginUserName != null">loginUserName,</if>
+                <if test="loginPassword != null">loginPassword,</if>
+                <if test="nickName != null">nickName,</if>
+                <if test="locked != null">locked,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="adminUserId != null">admin_user_id = #{adminUserId,jdbcType=INTEGER},</if>
+                <if test="loginUserName != null">login_user_name = #{loginUserName,jdbcType=VARCHAR},</if>
+                <if test="loginPassword != null">login_password = #{loginPassword,jdbcType=VARCHAR},</if>
+                <if test="nickName != null">nick_name = #{nickName,jdbcType=VARCHAR},</if>
+                <if test="locked != null">locked = #{locked,jdbcType=TINYINT},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mqxu.mall.api.entity.MallAdminUser">
+        update tb_mall_admin_user
+        <set>
+                <if test="loginUserName != null">
+                    login_user_name = #{loginUserName,jdbcType=VARCHAR},
+                </if>
+                <if test="loginPassword != null">
+                    login_password = #{loginPassword,jdbcType=VARCHAR},
+                </if>
+                <if test="nickName != null">
+                    nick_name = #{nickName,jdbcType=VARCHAR},
+                </if>
+                <if test="locked != null">
+                    locked = #{locked,jdbcType=TINYINT},
+                </if>
+        </set>
+        where   admin_user_id = #{adminUserId,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mqxu.mall.api.entity.MallAdminUser">
+        update tb_mall_admin_user
+        set 
+            login_user_name =  #{loginUserName,jdbcType=VARCHAR},
+            login_password =  #{loginPassword,jdbcType=VARCHAR},
+            nick_name =  #{nickName,jdbcType=VARCHAR},
+            locked =  #{locked,jdbcType=TINYINT}
+        where   admin_user_id = #{adminUserId,jdbcType=INTEGER} 
+    </update>
+</mapper>

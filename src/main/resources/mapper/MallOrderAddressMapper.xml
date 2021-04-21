@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mqxu.mall.api.mapper.TbMallOrderAddressMapper">
+
+    <resultMap id="BaseResultMap" type="com.mqxu.mall.api.entity.MallOrderAddress">
+            <id property="orderId" column="order_id" jdbcType="BIGINT"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="userPhone" column="user_phone" jdbcType="VARCHAR"/>
+            <result property="provinceName" column="province_name" jdbcType="VARCHAR"/>
+            <result property="cityName" column="city_name" jdbcType="VARCHAR"/>
+            <result property="regionName" column="region_name" jdbcType="VARCHAR"/>
+            <result property="detailAddress" column="detail_address" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        order_id,user_name,user_phone,
+        province_name,city_name,region_name,
+        detail_address
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_mall_order_address
+        where  order_id = #{orderId,jdbcType=BIGINT} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from tb_mall_order_address
+        where  order_id = #{orderId,jdbcType=BIGINT} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mqxu.mall.api.entity.MallOrderAddress" useGeneratedKeys="true">
+        insert into tb_mall_order_address
+        ( order_id,user_name,user_phone
+        ,province_name,city_name,region_name
+        ,detail_address)
+        values (#{orderId,jdbcType=BIGINT},#{userName,jdbcType=VARCHAR},#{userPhone,jdbcType=VARCHAR}
+        ,#{provinceName,jdbcType=VARCHAR},#{cityName,jdbcType=VARCHAR},#{regionName,jdbcType=VARCHAR}
+        ,#{detailAddress,jdbcType=VARCHAR}))
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mqxu.mall.api.entity.MallOrderAddress" useGeneratedKeys="true">
+        insert into tb_mall_order_address
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="orderId != null">orderId,</if>
+                <if test="userName != null">userName,</if>
+                <if test="userPhone != null">userPhone,</if>
+                <if test="provinceName != null">provinceName,</if>
+                <if test="cityName != null">cityName,</if>
+                <if test="regionName != null">regionName,</if>
+                <if test="detailAddress != null">detailAddress,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="orderId != null">order_id = #{orderId,jdbcType=BIGINT},</if>
+                <if test="userName != null">user_name = #{userName,jdbcType=VARCHAR},</if>
+                <if test="userPhone != null">user_phone = #{userPhone,jdbcType=VARCHAR},</if>
+                <if test="provinceName != null">province_name = #{provinceName,jdbcType=VARCHAR},</if>
+                <if test="cityName != null">city_name = #{cityName,jdbcType=VARCHAR},</if>
+                <if test="regionName != null">region_name = #{regionName,jdbcType=VARCHAR},</if>
+                <if test="detailAddress != null">detail_address = #{detailAddress,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mqxu.mall.api.entity.MallOrderAddress">
+        update tb_mall_order_address
+        <set>
+                <if test="userName != null">
+                    user_name = #{userName,jdbcType=VARCHAR},
+                </if>
+                <if test="userPhone != null">
+                    user_phone = #{userPhone,jdbcType=VARCHAR},
+                </if>
+                <if test="provinceName != null">
+                    province_name = #{provinceName,jdbcType=VARCHAR},
+                </if>
+                <if test="cityName != null">
+                    city_name = #{cityName,jdbcType=VARCHAR},
+                </if>
+                <if test="regionName != null">
+                    region_name = #{regionName,jdbcType=VARCHAR},
+                </if>
+                <if test="detailAddress != null">
+                    detail_address = #{detailAddress,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where   order_id = #{orderId,jdbcType=BIGINT} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mqxu.mall.api.entity.MallOrderAddress">
+        update tb_mall_order_address
+        set 
+            user_name =  #{userName,jdbcType=VARCHAR},
+            user_phone =  #{userPhone,jdbcType=VARCHAR},
+            province_name =  #{provinceName,jdbcType=VARCHAR},
+            city_name =  #{cityName,jdbcType=VARCHAR},
+            region_name =  #{regionName,jdbcType=VARCHAR},
+            detail_address =  #{detailAddress,jdbcType=VARCHAR}
+        where   order_id = #{orderId,jdbcType=BIGINT} 
+    </update>
+</mapper>

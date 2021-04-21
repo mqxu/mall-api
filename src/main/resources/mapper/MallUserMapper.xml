@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mqxu.mall.api.mapper.MallUserMapper">
+<mapper namespace="com.mqxu.mall.api.mapper.TbMallUserMapper">
 
     <resultMap id="BaseResultMap" type="com.mqxu.mall.api.entity.MallUser">
             <id property="userId" column="user_id" jdbcType="BIGINT"/>
@@ -27,9 +27,6 @@
         <include refid="Base_Column_List" />
         from tb_mall_user
         where  user_id = #{userId,jdbcType=BIGINT} 
-    </select>
-    <select id="selectAll" resultType="com.mqxu.mall.api.entity.MallUser">
-        select * from tb_mall_user
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">

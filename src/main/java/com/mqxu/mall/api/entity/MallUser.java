@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author mqxu
  * @TableName tb_mall_user
  */
 @Data
