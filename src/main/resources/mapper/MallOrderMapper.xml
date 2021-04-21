@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mqxu.mall.api.mapper.TbMallOrderMapper">
+<mapper namespace="com.mqxu.mall.api.mapper.MallOrderMapper">
 
     <resultMap id="BaseResultMap" type="com.mqxu.mall.api.entity.MallOrder">
             <id property="orderId" column="order_id" jdbcType="BIGINT"/>

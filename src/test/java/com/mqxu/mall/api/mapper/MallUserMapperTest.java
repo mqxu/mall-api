@@ -1,10 +1,12 @@
 package com.mqxu.mall.api.mapper;
 
+import com.mqxu.mall.api.entity.MallUser;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,6 +16,22 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class MallUserMapperTest {
     @Resource
     private MallUserMapper mallUserMapper;
+
+    @Test
+    void insert() {
+        MallUser mallUser = MallUser.builder()
+                .nickName("测试用户")
+                .loginName("13099990000")
+                .passwordMd5("e10adc3949ba59abbe56e057f20f883e")
+                .address("江苏南京")
+                .introduceSign("测试用户")
+                .isDeleted((byte) 0)
+                .lockedFlag((byte) 0)
+                .createTime(new Date())
+                .build();
+        int count = mallUserMapper.insert(mallUser);
+        assertEquals(1, count);
+    }
 
     @Test
     void selectByPrimaryKey() {

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mqxu.mall.api.mapper.TbMallShoppingCartItemMapper">
+<mapper namespace="com.mqxu.mall.api.mapper.MallShoppingCartItemMapper">
 
     <resultMap id="BaseResultMap" type="com.mqxu.mall.api.entity.MallShoppingCartItem">
             <id property="cartItemId" column="cart_item_id" jdbcType="BIGINT"/>

@@ -20,6 +20,8 @@ class MallUserServiceTest {
 
     @Test
     void login() {
+        String register = mallUserService.login("13300001111", "4297f44b13955235245b2497399d7a93");
+        log.info(register);
     }
 
     @Test

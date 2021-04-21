@@ -6,7 +6,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 用户修改参数实体
+ * 用户修改param
  * @author mqxu
  */
 @Data

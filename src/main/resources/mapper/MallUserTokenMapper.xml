@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mqxu.mall.api.mapper.TbMallUserTokenMapper">
+<mapper namespace="com.mqxu.mall.api.mapper.MallUserTokenMapper">
 
     <resultMap id="BaseResultMap" type="com.mqxu.mall.api.entity.MallUserToken">
             <id property="userId" column="user_id" jdbcType="BIGINT"/>
@@ -32,7 +32,7 @@
         ( user_id,token,update_time
         ,expire_time)
         values (#{userId,jdbcType=BIGINT},#{token,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP}
-        ,#{expireTime,jdbcType=TIMESTAMP}))
+        ,#{expireTime,jdbcType=TIMESTAMP})
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mqxu.mall.api.entity.MallUserToken" useGeneratedKeys="true">
         insert into tb_mall_user_token

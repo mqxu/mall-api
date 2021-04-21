@@ -3,6 +3,7 @@ package com.mqxu.mall.api.mapper;
 import com.mqxu.mall.api.entity.MallAdminUser;
 
 /**
+ * @author mqxu
  * @Entity com.mqxu.mall.api.entity.MallAdminUser
  */
 public interface MallAdminUserMapper {

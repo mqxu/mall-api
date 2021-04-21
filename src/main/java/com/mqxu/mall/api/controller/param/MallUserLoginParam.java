@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 /**
- * 用户登录参数实体
+ * 用户登录param
  * @author mqxu
  */
 @Data

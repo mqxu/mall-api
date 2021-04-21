@@ -1,15 +1,22 @@
 package com.mqxu.mall.api.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * @author mqxu
  * @TableName tb_mall_user
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class MallUser implements Serializable {
     /**
      * 用户主键id
