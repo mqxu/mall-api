@@ -19,6 +19,12 @@ public interface MallUserTokenMapper {
 
     int updateByPrimaryKey(MallUserToken record);
 
+    /**
+     * 根据token查询
+     *
+     * @param token token
+     * @return MallUserToken
+     */
     MallUserToken selectByToken(String token);
 
 }
