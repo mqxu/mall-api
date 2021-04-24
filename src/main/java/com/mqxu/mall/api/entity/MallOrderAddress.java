@@ -1,17 +1,29 @@
 package com.mqxu.mall.api.entity;
 
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * 订单收货地址关联表
+ * @author mqxu
  * @TableName tb_mall_order_address
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName("tb_mall_order_address")
 public class MallOrderAddress implements Serializable {
     /**
      * 
      */
+    @TableId
     private Long orderId;
 
     /**

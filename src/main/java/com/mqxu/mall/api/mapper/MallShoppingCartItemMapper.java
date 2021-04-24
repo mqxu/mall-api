@@ -1,24 +1,13 @@
 package com.mqxu.mall.api.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.mqxu.mall.api.entity.MallShoppingCartItem;
 
 /**
+ * @author mqxu
  * @Entity com.mqxu.mall.api.entity.TbMallShoppingCartItem
  */
-public interface MallShoppingCartItemMapper {
-
-    int deleteByPrimaryKey(Long id);
-
-    int insert(MallShoppingCartItem record);
-
-    int insertSelective(MallShoppingCartItem record);
-
-    MallShoppingCartItem selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(MallShoppingCartItem record);
-
-    int updateByPrimaryKey(MallShoppingCartItem record);
-
+public interface MallShoppingCartItemMapper extends BaseMapper<MallShoppingCartItem> {
 }
 
 

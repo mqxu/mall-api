@@ -1,18 +1,30 @@
 package com.mqxu.mall.api.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 
+ * @author mqxu
  * @TableName tb_mall_index_config
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName("tb_mall_index_config")
 public class MallIndexConfig implements Serializable {
     /**
      * 首页配置项主键id
      */
+    @TableId
     private Long configId;
 
     /**

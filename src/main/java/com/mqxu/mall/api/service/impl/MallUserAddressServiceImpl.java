@@ -1,5 +1,6 @@
 package com.mqxu.mall.api.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mqxu.mall.api.common.MallException;
 import com.mqxu.mall.api.common.ServiceResultEnum;
 import com.mqxu.mall.api.controller.vo.MallUserAddressVO;
@@ -25,7 +26,9 @@ public class MallUserAddressServiceImpl implements MallUserAddressService {
 
     @Override
     public List<MallUserAddressVO> getMyAddresses(Long userId) {
-        List<MallUserAddress> myAddressList = mallUserAddressMapper.findMyAddressList(userId);
+        QueryWrapper<MallUserAddress> query = new QueryWrapper<>();
+        query.eq("user_id", userId);
+        List<MallUserAddress> myAddressList = mallUserAddressMapper.selectList(query);
         return BaseBeanUtil.copyList(myAddressList, MallUserAddressVO.class);
     }
 
@@ -38,14 +41,14 @@ public class MallUserAddressServiceImpl implements MallUserAddressService {
             if (defaultAddress != null) {
                 defaultAddress.setDefaultFlag((byte) 0);
                 defaultAddress.setUpdateTime(now);
-                int updateResult = mallUserAddressMapper.updateByPrimaryKeySelective(defaultAddress);
+                int updateResult = mallUserAddressMapper.updateById(defaultAddress);
                 if (updateResult < 1) {
                     //未更新成功
                     MallException.fail(ServiceResultEnum.DB_ERROR.getResult());
                 }
             }
         }
-        return mallUserAddressMapper.insertSelective(mallUserAddress) > 0;
+        return mallUserAddressMapper.insert(mallUserAddress) > 0;
     }
 
     @Override
@@ -59,7 +62,7 @@ public class MallUserAddressServiceImpl implements MallUserAddressService {
                 //存在默认地址且默认地址并不是当前修改的地址
                 defaultAddress.setDefaultFlag((byte) 0);
                 defaultAddress.setUpdateTime(new Date());
-                int updateResult = mallUserAddressMapper.updateByPrimaryKeySelective(defaultAddress);
+                int updateResult = mallUserAddressMapper.updateById(defaultAddress);
                 if (updateResult < 1) {
                     //未更新成功
                     MallException.fail(ServiceResultEnum.DB_ERROR.getResult());
@@ -67,12 +70,12 @@ public class MallUserAddressServiceImpl implements MallUserAddressService {
             }
         }
         mallUserAddress.setUpdateTime(new Date());
-        return mallUserAddressMapper.updateByPrimaryKeySelective(mallUserAddress) > 0;
+        return mallUserAddressMapper.updateById(mallUserAddress) > 0;
     }
 
     @Override
     public MallUserAddress getMallUserAddressById(Long addressId) {
-        MallUserAddress mallUserAddress = mallUserAddressMapper.selectByPrimaryKey(addressId);
+        MallUserAddress mallUserAddress = mallUserAddressMapper.selectById(addressId);
         if (mallUserAddress == null) {
             MallException.fail(ServiceResultEnum.DATA_NOT_EXIST.getResult());
         }
@@ -86,6 +89,6 @@ public class MallUserAddressServiceImpl implements MallUserAddressService {
 
     @Override
     public Boolean deleteById(Long addressId) {
-        return mallUserAddressMapper.deleteByPrimaryKey(addressId) > 0;
+        return mallUserAddressMapper.deleteById(addressId) > 0;
     }
 }

@@ -18,6 +18,9 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author mqxu
@@ -45,18 +48,23 @@ public class TokenToMallUserMethodArgumentResolver implements HandlerMethodArgum
             MallUser mallUser;
             String token = webRequest.getHeader("token");
             if (null != token && !"".equals(token) && token.length() == Constants.TOKEN_LENGTH) {
-                MallUserToken mallUserToken = mallUserTokenMapper.selectByToken(token);
-                if (mallUserToken == null || mallUserToken.getExpireTime().getTime() <= System.currentTimeMillis()) {
-                    MallException.fail(ServiceResultEnum.TOKEN_EXPIRE_ERROR.getResult());
+                Map<String, Object> map = new HashMap<>();
+                map.put("token", token);
+                List<MallUserToken> tokens = mallUserTokenMapper.selectByMap(map);
+                if (tokens != null) {
+                    MallUserToken mallUserToken = tokens.get(0);
+                    if (mallUserToken == null || mallUserToken.getExpireTime().getTime() <= System.currentTimeMillis()) {
+                        MallException.fail(ServiceResultEnum.TOKEN_EXPIRE_ERROR.getResult());
+                    }
+                    mallUser = mallUserMapper.selectById(mallUserToken.getUserId());
+                    if (mallUser == null) {
+                        MallException.fail(ServiceResultEnum.USER_NULL_ERROR.getResult());
+                    }
+                    if (mallUser.getLockedFlag().intValue() == 1) {
+                        MallException.fail(ServiceResultEnum.LOGIN_USER_LOCKED_ERROR.getResult());
+                    }
+                    return mallUser;
                 }
-                mallUser = mallUserMapper.selectByPrimaryKey(mallUserToken.getUserId());
-                if (mallUser == null) {
-                    MallException.fail(ServiceResultEnum.USER_NULL_ERROR.getResult());
-                }
-                if (mallUser.getLockedFlag().intValue() == 1) {
-                    MallException.fail(ServiceResultEnum.LOGIN_USER_LOCKED_ERROR.getResult());
-                }
-                return mallUser;
             } else {
                 MallException.fail(ServiceResultEnum.NOT_LOGIN_ERROR.getResult());
             }

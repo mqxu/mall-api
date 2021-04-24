@@ -15,13 +15,6 @@ spring:
       pool-name: hikariCP
       max-lifetime: 30000
       connection-test-query: SELECT 1
-#mybatis:
-#  mapper-locations: classpath:mapper/*Mapper.xml
-#  configuration:
-#    map-underscore-to-camel-case: true
-#  type-aliases-package: com.mqxu.mall.api.entity
-
-# 配置Mybatis
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

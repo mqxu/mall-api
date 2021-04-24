@@ -1,18 +1,30 @@
 package com.mqxu.mall.api.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 
+ * @author mqxu
  * @TableName tb_mall_goods_info
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName("tb_mall_goods_info")
 public class MallGoodsInfo implements Serializable {
     /**
      * 商品表主键id
      */
+    @TableId
     private Long goodsId;
 
     /**

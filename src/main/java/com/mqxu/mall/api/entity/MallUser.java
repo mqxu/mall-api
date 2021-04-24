@@ -1,5 +1,7 @@
 package com.mqxu.mall.api.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,10 +19,12 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@TableName("tb_mall_user")
 public class MallUser implements Serializable {
     /**
      * 用户主键id
      */
+    @TableId
     private Long userId;
 
     /**

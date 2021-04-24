@@ -1,17 +1,29 @@
 package com.mqxu.mall.api.entity;
 
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * 
+ * @author mqxu
  * @TableName tb_mall_admin_user
  */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName("tb_mall_admin_user")
 public class MallAdminUser implements Serializable {
     /**
      * 管理员id
      */
+    @TableId
     private Integer adminUserId;
 
     /**
