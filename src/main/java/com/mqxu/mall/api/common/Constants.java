@@ -12,6 +12,7 @@ public class Constants {
      * windows写法为："D:\\upload\\"
      */
     public final static String FILE_UPLOAD_DIC = "/Users/mqxu/upload/";
+    //public final static String FILE_UPLOAD_DIC = "/root/upload/";
 
     /**
      * 首页轮播图数量(可根据自身需求修改)

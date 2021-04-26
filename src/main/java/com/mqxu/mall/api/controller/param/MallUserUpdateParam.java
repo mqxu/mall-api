@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 /**
  * 用户修改param
+ *
  * @author mqxu
  */
 @Data
@@ -20,5 +21,8 @@ public class MallUserUpdateParam implements Serializable {
 
     @ApiModelProperty("个性签名")
     private String introduceSign;
+
+    @ApiModelProperty("头像")
+    private String avatar;
 
 }

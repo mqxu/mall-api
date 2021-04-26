@@ -48,6 +48,11 @@ public class MallUser implements Serializable {
     private String introduceSign;
 
     /**
+     * 头像
+     */
+    private String avatar;
+
+    /**
      *
      */
     private String address;

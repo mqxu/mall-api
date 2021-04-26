@@ -127,6 +127,7 @@ public class MallUserServiceImpl implements MallUserService {
         user.setNickName(mallUser.getNickName());
         user.setPasswordMd5(mallUser.getPasswordMd5());
         user.setIntroduceSign(mallUser.getIntroduceSign());
+        user.setAvatar(mallUser.getAvatar());
         return mallUserMapper.update(user, query) > 0;
     }
 

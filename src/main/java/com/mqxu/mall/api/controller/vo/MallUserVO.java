@@ -21,4 +21,7 @@ public class MallUserVO implements Serializable {
 
     @ApiModelProperty("个性签名")
     private String introduceSign;
+
+    @ApiModelProperty("头像")
+    private String avatar;
 }
