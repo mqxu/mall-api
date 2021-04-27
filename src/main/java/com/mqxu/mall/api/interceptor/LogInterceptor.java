@@ -46,20 +46,24 @@ public class LogInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        log.info("调用接口" + request.getRequestURI() + "完毕");
-        //构建日志对象
-        MallLoginLog mallLoginLog = MallLoginLog.builder()
-                .userId(Long.parseLong(request.getHeader("userId")))
-                .platform(request.getHeader("platform"))
-                .apiUri(request.getRequestURI())
-                .createTime(new Date())
-                .build();
-        log.info("保存日志：" + mallLoginLog);
-        mallLoginLogService.saveLog(mallLoginLog);
+        HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+        log.info("调用接口" + request.getRequestURI() + "完毕");
+        String userId = request.getHeader("userId");
+        MallLoginLog mallLoginLog;
+        mallLoginLog = MallLoginLog.builder()
+                .platform(request.getHeader("platform"))
+                .apiUri(request.getRequestURI())
+                .createTime(new Date())
+                .build();
+        //登录后带有userId请求头访问的日志
+        if (!"".equals(userId)) {
+            mallLoginLog.setUserId(Long.parseLong(userId));
+        }
+        log.info("保存日志：" + mallLoginLog);
+        mallLoginLogService.saveLog(mallLoginLog);
     }
 }

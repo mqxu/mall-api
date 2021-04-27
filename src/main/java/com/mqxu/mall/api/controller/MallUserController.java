@@ -48,6 +48,11 @@ public class MallUserController {
         //登录成功
         String token = loginResult.get("token").toString();
         if (!token.isEmpty() && token.length() == Constants.TOKEN_LENGTH) {
+            //更新请求头中userId的值为当前登录用户的id，到拦截器继续执行后置操作，记录日志
+            //ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+            //assert servletRequestAttributes != null;
+            //HttpServletRequest request = servletRequestAttributes.getRequest();
+            //request.setAttribute("userId", loginResult.get("userId").toString());
             Result result = ResultGenerator.genSuccessResult();
             result.setData(loginResult);
             return result;
