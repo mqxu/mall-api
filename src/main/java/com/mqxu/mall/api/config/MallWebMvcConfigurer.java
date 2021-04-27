@@ -2,7 +2,7 @@ package com.mqxu.mall.api.config;
 
 import com.mqxu.mall.api.common.Constants;
 import com.mqxu.mall.api.config.handler.TokenToMallUserMethodArgumentResolver;
-import com.mqxu.mall.api.interceptor.LoginInterceptor;
+import com.mqxu.mall.api.interceptor.LogInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -23,7 +23,7 @@ public class MallWebMvcConfigurer implements WebMvcConfigurer {
     private TokenToMallUserMethodArgumentResolver tokenToMallUserMethodArgumentResolver;
 
     @Resource
-    private LoginInterceptor loginInterceptor;
+    private LogInterceptor logInterceptor;
 
     /**
      * TokenToMallUser 注解处理方法
@@ -48,8 +48,8 @@ public class MallWebMvcConfigurer implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/**")
-                .excludePathPatterns("/api/v1/user/login")
+        //拦截所有请求，除了swagger
+        registry.addInterceptor(logInterceptor).addPathPatterns("/**")
                 .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
     }
 }

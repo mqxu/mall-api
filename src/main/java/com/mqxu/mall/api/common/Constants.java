@@ -93,4 +93,22 @@ public class Constants {
      * 个人信息默认简介
      */
     public final static String USER_INTRO = "随心所欲，丰富多彩";
+
+
+    /**
+     * API登录接口端点
+     */
+    public final static String API_LOGIN = "/api/v1/user/login";
+
+    /**
+     * API注册接口端点
+     */
+    public final static String API_REGISTER = "/api/v1/user/register";
+
+    /**
+     * API首页接口端点
+     */
+    public final static String API_INDEX = "/api/v1/index-infos";
+
+
 }
