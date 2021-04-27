@@ -23,9 +23,13 @@ public class CorsConfig {
         List<String> allowedOriginPatterns = new ArrayList<>();
         allowedOriginPatterns.add("*");
         corsConfiguration.setAllowedOriginPatterns(allowedOriginPatterns);
-        // 允许任何头
+        // 允许的自定义请求头
+        //String[] customHeaders = {"token", "platform", "userId"};
+        //corsConfiguration.setAllowedHeaders(Arrays.asList(customHeaders));
         corsConfiguration.addAllowedHeader("*");
-        // 允许任何方法（post、get等）
+        // 允许的请求方法
+        //String[] allowedMethods = {"get", "post", "put", "delete"};
+        //corsConfiguration.setAllowedMethods(Arrays.asList(allowedMethods));
         corsConfiguration.addAllowedMethod("*");
         return corsConfiguration;
     }

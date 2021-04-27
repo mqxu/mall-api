@@ -17,11 +17,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.Map;
 
 /**
  * @description: MallUserController
@@ -39,22 +39,21 @@ public class MallUserController {
 
     @PostMapping("/user/login")
     @ApiOperation(value = "登录接口", notes = "返回token")
-    public Result<String> login(@RequestBody @Valid MallUserLoginParam mallUserLoginParam) {
+    public Result login(@RequestBody @Valid MallUserLoginParam mallUserLoginParam) {
         if (!NumberUtil.isPhone(mallUserLoginParam.getLoginName())) {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_NAME_IS_NOT_PHONE.getResult());
         }
-        String loginResult = mallUserService.login(mallUserLoginParam.getLoginName(), mallUserLoginParam.getPasswordMd5());
-
+        Map<String, Object> loginResult = mallUserService.login(mallUserLoginParam.getLoginName(), mallUserLoginParam.getPasswordMd5());
         log.info("login api,loginName={},loginResult={}", mallUserLoginParam.getLoginName(), loginResult);
-
         //登录成功
-        if (!StringUtils.isEmpty(loginResult) && loginResult.length() == Constants.TOKEN_LENGTH) {
+        String token = loginResult.get("token").toString();
+        if (!token.isEmpty() && token.length() == Constants.TOKEN_LENGTH) {
             Result result = ResultGenerator.genSuccessResult();
             result.setData(loginResult);
             return result;
         }
         //登录失败
-        return ResultGenerator.genFailResult(loginResult);
+        return ResultGenerator.genFailResult(loginResult.get("msg").toString());
     }
 
 

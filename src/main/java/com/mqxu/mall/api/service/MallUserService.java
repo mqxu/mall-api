@@ -2,6 +2,8 @@ package com.mqxu.mall.api.service;
 
 import com.mqxu.mall.api.controller.param.MallUserUpdateParam;
 
+import java.util.Map;
+
 /**
  * @description: 用户Service接口
  * @author: mqxu
@@ -25,7 +27,7 @@ public interface MallUserService {
      * @param passwordMd5 md5加密密码
      * @return String
      */
-    String login(String loginName, String passwordMd5);
+    Map<String,Object> login(String loginName, String passwordMd5);
 
     /**
      * 用户信息修改
@@ -43,4 +45,5 @@ public interface MallUserService {
      * @return boolean
      */
     Boolean logout(Long userId);
+
 }

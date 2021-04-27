@@ -16,7 +16,7 @@ spring:
       max-lifetime: 30000
       connection-test-query: SELECT 1
 mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath*:/mapper/*Mapper.xml
   type-aliases-package: com.mqxu.mall.api.entity

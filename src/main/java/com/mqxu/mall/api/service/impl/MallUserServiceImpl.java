@@ -57,7 +57,8 @@ public class MallUserServiceImpl implements MallUserService {
     }
 
     @Override
-    public String login(String loginName, String passwordMd5) {
+    public Map<String, Object> login(String loginName, String passwordMd5) {
+        Map<String, Object> res = new HashMap<>(4);
         //根据loginName和password查询
         Map<String, Object> map = new HashMap<>(4);
         map.put("login_name", loginName);
@@ -66,9 +67,11 @@ public class MallUserServiceImpl implements MallUserService {
         if (mallUsers.size() != 0) {
             //查询到的用户
             MallUser user = mallUsers.get(0);
+            System.out.println(user);
             //用户账号被锁定
             if (user.getLockedFlag() == 1) {
-                return ServiceResultEnum.LOGIN_USER_LOCKED_ERROR.getResult();
+                res.put("token", ServiceResultEnum.LOGIN_USER_LOCKED_ERROR.getResult());
+                return res;
             }
             //登录后即执行修改token的操作
             String token = getNewToken(System.currentTimeMillis() + "", user.getUserId());
@@ -85,7 +88,9 @@ public class MallUserServiceImpl implements MallUserService {
                 mallUserToken.setUpdateTime(now);
                 mallUserToken.setExpireTime(expireTime);
                 if (mallUserTokenMapper.insert(mallUserToken) > 0) {
-                    return token;
+                    res.put("token", token);
+                    res.put("userId", mallUserToken.getUserId());
+                    return res;
                 }
             } else {
                 //更新token
@@ -93,12 +98,15 @@ public class MallUserServiceImpl implements MallUserService {
                 mallUserToken.setUpdateTime(now);
                 mallUserToken.setExpireTime(expireTime);
                 if (mallUserTokenMapper.updateById(mallUserToken) > 0) {
-                    return token;
+                    res.put("token", token);
+                    res.put("userId", user.getUserId());
+                    return res;
                 }
             }
         }
         //登录名或密码错误，返回登录失败的结果
-        return ServiceResultEnum.LOGIN_ERROR.getResult();
+        res.put("msg", ServiceResultEnum.LOGIN_ERROR.getResult());
+        return res;
     }
 
     /**
