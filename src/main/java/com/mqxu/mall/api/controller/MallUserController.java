@@ -36,7 +36,6 @@ public class MallUserController {
     @Resource
     private MallUserService mallUserService;
 
-
     @PostMapping("/user/login")
     @ApiOperation(value = "登录接口", notes = "返回token")
     public Result login(@RequestBody @Valid MallUserLoginParam mallUserLoginParam) {
@@ -44,7 +43,7 @@ public class MallUserController {
             return ResultGenerator.genFailResult(ServiceResultEnum.LOGIN_NAME_IS_NOT_PHONE.getResult());
         }
         Map<String, Object> loginResult = mallUserService.login(mallUserLoginParam.getLoginName(), mallUserLoginParam.getPasswordMd5());
-        log.info("login api,loginName={},loginResult={}", mallUserLoginParam.getLoginName(), loginResult);
+        //log.info("login api,loginName={},loginResult={}", mallUserLoginParam.getLoginName(), loginResult);
         //登录成功
         String token = loginResult.get("token").toString();
         if (!token.isEmpty() && token.length() == Constants.TOKEN_LENGTH) {

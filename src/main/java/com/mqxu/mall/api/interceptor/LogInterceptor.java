@@ -26,7 +26,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("请求前调用！");
+        log.debug("请求前调用！");
         String platform = request.getHeader("platform");
         String userId = request.getHeader("userId");
         String token = request.getHeader("token");
@@ -41,7 +41,6 @@ public class LogInterceptor implements HandlerInterceptor {
         // 走到这里，证明有platform、也不是访问注册登录首页接口，则检测token是否有值
         //根据请求头中token是否为""，决定是否放行到接口
         return !"".equals(token);
-
     }
 
     @Override
@@ -51,7 +50,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        log.info("调用接口" + request.getRequestURI() + "完毕");
+        log.debug("调用接口" + request.getRequestURI() + "完毕");
         String userId = request.getHeader("userId");
         MallLoginLog mallLoginLog;
         mallLoginLog = MallLoginLog.builder()
