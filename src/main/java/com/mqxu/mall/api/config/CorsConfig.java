@@ -28,8 +28,6 @@ public class CorsConfig {
         //corsConfiguration.setAllowedHeaders(Arrays.asList(customHeaders));
         corsConfiguration.addAllowedHeader("*");
         // 允许的请求方法
-        //String[] allowedMethods = {"get", "post", "put", "delete"};
-        //corsConfiguration.setAllowedMethods(Arrays.asList(allowedMethods));
         corsConfiguration.addAllowedMethod("*");
         return corsConfiguration;
     }
