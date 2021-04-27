@@ -26,7 +26,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.debug("请求前调用！");
+        log.info("请求前调用！");
         String platform = request.getHeader("platform");
         String userId = request.getHeader("userId");
         String token = request.getHeader("token");
@@ -50,7 +50,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        log.debug("调用接口" + request.getRequestURI() + "完毕");
+        log.info("调用接口" + request.getRequestURI() + "完毕");
         String userId = request.getHeader("userId");
         MallLoginLog mallLoginLog;
         mallLoginLog = MallLoginLog.builder()
